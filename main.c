@@ -40,13 +40,13 @@ char * print_mem_dump() {
 }
 
 void populate_garbage_stream() {
-    int r1 = 2, r2 = 16;
-    for(int i = 0; i < 10; i++) {
-        int wrd_first_char = get_random_int(MEM_DUMP_LEN - strlen(rand_wrd) - r1 - r2);
-        for(int j = 0; j < strlen(rand_wrd); j++)
+    int wrd_first_char = get_random_int(64);
+    while(wrd_first_char < strlen(mem_dump) - strlen(rand_wrd)) {
+        int j;
+        for(j = 0; j < strlen(rand_wrd); j++)
             mem_dump[wrd_first_char++] = rand_wrd[j];
-        r1 += get_random_int(r1);
-        r2 += get_random_int(r2);
+
+        wrd_first_char = wrd_first_char + j + get_random_int(64);
     }
 }
 
