@@ -3,3 +3,6 @@ all:
 
 run:
 	./bin
+
+debug:
+	./bin -d
