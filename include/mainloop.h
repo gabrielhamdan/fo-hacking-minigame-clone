@@ -34,19 +34,21 @@ typedef struct game_params {
     input_buffer buff;
 } game_params;
 
-void gen_random_garbage_stream();
-char * print_garbage_stream(int);
-void populate_garbage_stream(game_params *);
-void print_display(game_params *);
-void set_difficulty(game_params *);
-void set_new_secret(game_params *);
+void clean__entry_buff(input_buffer *);
 void clear_game(game_params *);
+void gen_random_garbage_stream();
 bool is_correct_guess(game_params *);
+void populate_garbage_stream(game_params *);
 void print_attempt_failure(game_params *);
-void set_new_rand_mem_add(game_params *);
-void print_terminal_header(int);
-void print_left_attempts(int);
-void start_new_game(bool, game_difficulty);
+void print_display(game_params *);
 void print_game_over(bool);
+char * print_garbage_stream(int);
+void print_left_attempts(int);
+void print_terminal_header(int);
+void read_usr_input(char *);
+void set_difficulty(game_params *);
+void set_new_rand_mem_add(game_params *);
+void set_new_secret(game_params *);
+void start_new_game(bool, game_difficulty);
 
 #endif

@@ -147,15 +147,23 @@ void print_game_over(bool has_guessed) {
     }
 }
 
+void read_usr_input(char *guess) {
+    printf(">");
+    scanf("%7s", guess);
+    flush_stdin();
+}
+
+void clean__entry_buff(input_buffer *entry_buff) {
+    for(int i = 0; i < COLUMN_LEN; i++)
+        memset(entry_buff->buff[i], '\0', sizeof(entry_buff->buff[i]));
+    entry_buff->entries = 0;
+}
+
 void start_new_game(bool is_debug_mode, game_difficulty difficulty) {
     game_params game;
     game.difficulty = difficulty;
 
-    for(int i = 0; i < COLUMN_LEN; i++)
-        memset(game.buff.buff[i], '\0', sizeof(game.buff.buff[i]));
-
-    game.buff.entries = 0;
-
+    clean__entry_buff(&game.buff);
     set_difficulty(&game);
     gen_random_garbage_stream();
     populate_garbage_stream(&game);
@@ -174,10 +182,7 @@ void start_new_game(bool is_debug_mode, game_difficulty difficulty) {
         print_terminal_header(game.attempts_left);
         print_left_attempts(game.attempts_left);
         print_display(&game);
-        printf(">");
-        fgets(game.guess, GUESS_LEN , stdin);
-        if(strlen(game.guess) > game.wrd_len)
-            flush_stdin();
+        read_usr_input(&game.guess);
         if(is_correct_guess(&game)) break;
         game.attempts_left--;
         print_attempt_failure(&game);
@@ -187,6 +192,7 @@ void start_new_game(bool is_debug_mode, game_difficulty difficulty) {
 
     clear_game(&game);
 
+    // wait for user input
     getchar();
 
     print_main_menu(is_debug_mode);
