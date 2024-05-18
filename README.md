@@ -39,4 +39,4 @@ Found a bug? Please [open and issue](https://github.com/gabrielhamdan/fo-hacking
 
 ## Acknowledgements
 
- - ChatGPT assisted me in generating the random words used in the game as passwords (I didn't bother to check them all, though).
+ - ChatGPT assisted me in generating the random words used in the game as passwords (meaning "thanks" but also "I didn't bother to check them all").
